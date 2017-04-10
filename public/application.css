@@ -3,6 +3,33 @@ html,body {
   padding: 0;
   box-sizing: border-box;
 }
+.filter-container {
+  float: right;
+  margin-top: 40px;
+  margin-right: 40px;
+}
+.filter-container p {
+  display: inline-block;
+}
+
+.filter {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.filter li {
+  display: inline-block;
+  padding-right: 10px;
+  text-decoration: underline;
+}
+
+.filter li:hover {
+  cursor: pointer;
+}
+
+.clearfix {
+  clear: both;
+}
 .container {
   padding: 10px;
   width: 90%;
@@ -22,3 +49,4 @@ html,body {
   text-align: center;
   margin-top: 20px;
 }
+
