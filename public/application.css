@@ -1,0 +1,24 @@
+html,body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  padding: 10px;
+  width: 90%;
+  height: 250px;
+  margin-bottom: 10px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.row img {
+  display: block;
+  height: 150px;
+  width: 150px;
+}
+
+.load{
+  text-align: center;
+  margin-top: 20px;
+}
