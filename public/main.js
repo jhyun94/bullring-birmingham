@@ -1,30 +1,59 @@
 $(document).ready(function(){
   var json;
-  var counter = 8;
-  $.ajax({
-      url: "posts.json",
-      dataType: 'json',
-      async: false,
-      type: "get"
-  }).done(function(response){
-      json = response;
-  });
-  json.items = json.items.sort(function(a,b){
-    return new Date(b.item_created) - new Date(a.item_created);
-  })
-  appendInitial(json);
+  var counter;
+  loadFile();
+  var data = Object.assign({}, json);
+
+  appendInitial(data);
+
   $(".btn").on("click", function(){
-    loadMore(json);
-    buttonChecker();
+    loadMore(data);
+    buttonChecker(data);
   })
 
   $(".filter li").on("click", function(){
     var filtered = filter(this.innerText);
+    data = filtered;
     $(".row").empty();
-    for (var i =0; i < filtered.items.length; i++){
+    for (var i =0; i < 8; i++){
       $(".row").append(product(filtered.items[i]));
+      if (i == filtered.items.length -1){
+        break;
+      }
     }
+    buttonChecker(filtered);
   })
+
+  function loadFile(){
+    $.ajax({
+      url: "posts.json",
+      dataType: 'json',
+      async: false,
+      type: "get"
+    }).done(function(response){
+        json = response;
+    });
+    json.items = json.items.sort(function(a,b){
+      return new Date(b.item_created) - new Date(a.item_created);
+    })
+  }
+
+  function appendInitial(data){
+    for (var i = 0; i < 8; i++){
+      $(".row").append(product(data.items[i]));
+    }
+  }
+
+  function loadMore(data){
+    var counter = $(".row")[0].children.length;
+    for (var i =0; i < 4; i++){
+      $(".row").append(product(data.items[counter]));
+      counter++;
+      if (counter >= data.items.length){
+        break;
+      }
+    }
+  }
 
   function filter(category){
     var filtered = Object.assign({}, json);
@@ -52,30 +81,21 @@ $(document).ready(function(){
           }
         })
         return filtered;
-        break;  
+        break; 
+      case "All":
+        filtered = json;
+        return filtered;
+        break;       
     }
   }
 
-  function loadMore(data){
-    for (var i =0; i < 4; i++){
-      $(".row").append(product(data.items[counter]));
-      counter++;
-      if (counter >= data.items.length){
-        break;
-      }
-      console.log(counter);
-    }
-  }
-
-  function buttonChecker(){
-    if (counter == json.items.length){
+  function buttonChecker(data){
+    var counter = $(".row")[0].children.length;
+    if (counter == data.items.length){
       $(".btn").hide();
     }
-  }
-
-  function appendInitial(data){
-    for (var i = 0; i < 8; i++){
-      $(".row").append(product(data.items[i]));
+    else{
+      $(".btn").show();
     }
   }
 
