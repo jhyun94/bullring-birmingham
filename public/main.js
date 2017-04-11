@@ -14,6 +14,7 @@ $(document).ready(function(){
   $(".filter li").on("click", function(){
     var filtered = filter(this.innerText);
     data = filtered;
+    updateClass(this);
     $(".row").empty();
     for (var i =0; i < 8; i++){
       $(".row").append(product(filtered.items[i]));
@@ -97,6 +98,11 @@ $(document).ready(function(){
     else{
       $(".btn").show();
     }
+  }
+  function updateClass(list){
+    var old = document.getElementsByClassName("active");
+    $(old).removeClass("active");
+    $(list).addClass("active");
   }
 
   function product(data){
