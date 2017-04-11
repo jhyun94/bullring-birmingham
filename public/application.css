@@ -1,0 +1,62 @@
+html,body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+.filter-container {
+  float: right;
+  margin-top: 40px;
+  margin-right: 40px;
+}
+.filter-container p {
+  display: inline-block;
+}
+
+.filter {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.filter li {
+  display: inline-block;
+  padding-right: 10px;
+  text-decoration: underline;
+}
+
+.filter li:hover {
+  cursor: pointer;
+}
+
+.clearfix {
+  clear: both;
+}
+.active {
+  color: red;
+}
+.col-md-3 {
+  border: 1px solid black;
+}
+.container {
+  width: 100%;
+  height: 250px;
+  margin-bottom: 10px;
+  overflow: scroll;
+  overflow-x: hidden;
+/*  border: 1px solid black;*/
+}
+
+.row img {
+  display: block;
+  height: 150px;
+  width: 150px;
+}
+
+.load{
+  text-align: center;
+  margin-top: 20px;
+}
+
